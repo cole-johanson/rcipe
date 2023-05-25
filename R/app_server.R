@@ -40,8 +40,40 @@ app_server <- function(input, output, session) {
   })
 
   output$steps_html <- renderUI({
-    steps() %>%
-      pull(step_description) %>%
-      lapply(tags$li)
+    if(nrow(recipe_chosen()) == 0) return("")
+
+    ingredients = ingredient %>%
+      semi_join(recipe_chosen(), by ="recipe_id")
+
+    ingredients_store = ingredients %>%
+      filter(ingredient_type == 'store') %>%
+      pull(ingredient) %>%
+      add_tag('li') %>%
+      str_c(collapse="")
+
+    ingredients_pantry = ingredients %>%
+      filter(ingredient_type == 'pantry') %>%
+      pull(ingredient) %>%
+      add_tag('li') %>%
+      str_c(collapse="")
+
+    div(
+      column(6,
+             tags$b("Ingredients to buy"),
+             tags$ul(HTML(ingredients_store))
+      ),
+      column(6,
+             tags$b("Pantry items"),
+             tags$ul(HTML(ingredients_pantry))
+      ),
+      fluidRow(
+        style='padding-top:100px;',
+        steps() %>%
+          pull(step_description) %>%
+          lapply(tags$li)
+      )
+    )
   })
+
+  # If
 }

@@ -37,6 +37,8 @@ app_ui <- function(request) {
               onInitialize = I('function() { this.setValue(""); }')
             )
           )
+          # Add to grocery list button (only appears if one recipe is chosen)
+          # Refresh grocery list
         ),
         mainPanel(
           #fluidRow(uiOutput('recipe_title'),align="center"),
@@ -44,7 +46,9 @@ app_ui <- function(request) {
             uiOutput('steps_html')
           )
         )
-      )
+      ),
+      # Area below sidebar layout: Two items: grocery list and pantry list
+      # splitLayout(groceries, pantry)
     )
   )
 }

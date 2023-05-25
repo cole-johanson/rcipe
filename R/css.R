@@ -19,19 +19,24 @@ fluid_page_head_style <- function() {
       border: 1px solid white;
     }
     .nav-tabs>li>a {
-      color: ',rcipe_palette['bg'],'; font-weight: bold;
+      color: ',rcipe_palette['text'],'; font-weight: bold;
     }
     .tabbable>.nav>li[class=active]>a {
-      color: ',rcipe_palette['sidebar'],'; font-weight: bold;
+      color: ',rcipe_palette['text'],'; font-weight: bold;
     }
     body, label, input, button, select {
+      color: ',rcipe_palette['text'],';
+      font-size: 20px;
       font-family: "Aileron",Helvetica,Arial,sans-serif;
     }
     summary {
       display: revert
     }
+    li{
+      margin: 10px 0;
+    }
     a, a:focus, a:hover, a:focus, a:active {
-      color: white; font-weight: bold;
+      color: ',rcipe_palette['text'],'-weight: bold;
     }
     a:visited {
       color: ',rcipe_palette['text'],';
